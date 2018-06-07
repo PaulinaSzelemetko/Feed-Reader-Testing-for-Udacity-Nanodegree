@@ -57,8 +57,8 @@ $(function() {
     });
 
     describe('New Feed Selection', function(){
-        let before;
-        let after;
+        let feedBefore;
+        let feedAfter;
         let entries = document.getElementsByClassName('entry-link')[0];
 
         //This function loads the feed twice with different parameter and stores feeds content into variable after each load.
