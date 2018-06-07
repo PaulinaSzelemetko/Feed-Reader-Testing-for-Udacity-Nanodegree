@@ -27,34 +27,56 @@ $(function() {
 
 
     describe('Menu', function(){
-                 //This test that ensures the menu element is hidden by default.
-                it('is hidden by default', function(){
-                  expect($('body').hasClass('menu-hidden')).toBe(true);
-                });
-                //This test ensures the menu element is hidden / display when clicking.
-                it('is display and hidden when clicking', function(){
-                    $('a.menu-icon-link').click();
-                    expect($('body').hasClass('menu-hidden')).toBe(false);
-                    $('a.menu-icon-link').click();
-                    expect($('body').hasClass('menu-hidden')).toBe(true);
-                });
+             //This test ensures the menu element is hidden by default.
+            it('is hidden by default', function(){
+                expect($('body').hasClass('menu-hidden')).toBe(true);
+            });
+            //This test ensures the menu element is hidden / display when clicking.
+            it('is display and hidden when clicking', function(){
+                $('a.menu-icon-link').click();
+                expect($('body').hasClass('menu-hidden')).toBe(false);
+                $('a.menu-icon-link').click();
+                expect($('body').hasClass('menu-hidden')).toBe(true);
+            });
     });
 
+    describe('Initial entries', function(){
 
+        let entries = document.getElementsByClassName('entry-link').length;
+        //This function loads feed before the actual test is run. It uses Jasmine done function.
+        beforeEach(function (done){
+            loadFeed(0, function() {
+                done();
+            });
+        });
+        //This test ensures that when the loadFeed function is called and completes its work,ther is at least one .entry element
+        it('has at least one entry element in the feed', function (done){
+            expect(entries.length).not.toBe(0);
+            done();
+        }); 
+    });
 
-    /* TODO: Write a new test suite named "Initial Entries" */
+    describe('New Feed Selection', function(){
+        let before;
+        let after;
+        let entries = document.getElementsByClassName('entry-link')[0];
 
-        /* TODO: Write a test that ensures when the loadFeed
-         * function is called and completes its work, there is at least
-         * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test will require
-         * the use of Jasmine's beforeEach and asynchronous done() function.
-         */
-
-    /* TODO: Write a new test suite named "New Feed Selection" */
-
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
+        //This function loads the feed twice with different parameter and stores feeds content into variable after each load.
+        beforeEach(function (done){
+            loadFeed(0, function() {
+                feedBefore = $('.feed').html();
+                loadFeed(1, function() {
+                    feedAfter =$('.feed').html();
+                    done();
+                })
+            });
+         
+        });
+       
+        //This test ensures that when the loadFeed is run twice with different parameters the conents of the feed change.
+        it('feed element changes when loadFeed is run', function(done) {
+            expect(feedBefore).not.toBe(feedAfter);
+            done();
+        });
+    });
 }());
