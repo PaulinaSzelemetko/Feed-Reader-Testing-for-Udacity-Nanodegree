@@ -12,33 +12,35 @@ $(function() {
 
     describe('URLs and names in allFeeds are defined', function(){
         //This function loops through each feed in the allFeeds object and ensures it has a URL defined and that the URL is not empty.
-                allFeeds.forEach(function(allFeeds){
-                  it('has a url', function(){
-                    expect(allFeeds.url).toBeDefined();
-                    expect(allFeeds.length).not.toBe(0);
-                  });
-        //This function loops through each feed in the allFeeds object and ensures it has a name defined and that the name is not empty
-                  it('has a name', function(){
-                    expect(allFeeds.name).toBeDefined();
-                    expect(allFeeds.length).not.toBe(0);
-                  });
+        allFeeds.forEach(function(feed){
+            it('has an url', function(){
+                expect(feed.url).toBeDefined();
+                expect(feed.length).not.toBe(0);
+            });
+            //This function ensures feed has a name defined and that the name is not empty
+            it('has a name', function(){
+                expect(feed.name).toBeDefined();
+                expect(feed.length).not.toBe(0);
+            });
+        });
+    });
+
+
+    describe('Menu', function(){
+                 //This test that ensures the menu element is hidden by default.
+                it('is hidden by default', function(){
+                  expect($('body').hasClass('menu-hidden')).toBe(true);
                 });
-             });
+                //This test ensures the menu element is hidden / display when clicking.
+                it('is display and hidden when clicking', function(){
+                    $('a.menu-icon-link').click();
+                    expect($('body').hasClass('menu-hidden')).toBe(false);
+                    $('a.menu-icon-link').click();
+                    expect($('body').hasClass('menu-hidden')).toBe(true);
+                });
+    });
 
 
-    /* TODO: Write a new test suite named "The menu" */
-
-        /* TODO: Write a test that ensures the menu element is
-         * hidden by default. You'll have to analyze the HTML and
-         * the CSS to determine how we're performing the
-         * hiding/showing of the menu element.
-         */
-
-         /* TODO: Write a test that ensures the menu changes
-          * visibility when the menu icon is clicked. This test
-          * should have two expectations: does the menu display when
-          * clicked and does it hide when clicked again.
-          */
 
     /* TODO: Write a new test suite named "Initial Entries" */
 
