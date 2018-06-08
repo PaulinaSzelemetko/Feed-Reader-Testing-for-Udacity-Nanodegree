@@ -2,7 +2,8 @@
 
 This project is for Udacity Nanodegree and is used to learn the tests in Jasmine framework. 
 
-HOW TO VIEW THE TESTS? 
+HOW CAN YOU OPEN PROJECT IN A BROWSER?
 
-To run all test suites open index.html in your browser. 
-All tests will be on end of the page. 
+1. Download or clone the repository
+2. Navigate to 'frontend-nanodegree-feedreader
+3. Open index.html in your browser
